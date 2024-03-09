@@ -62,12 +62,12 @@ public class ServerGUI extends JFrame implements ServerView, LogsView{
         return logs.readLogs();
     }
 
-    private void stopServer() {
+    public void stopServer() {
         server.stopServer();
         setTitle("Server is offline");
     }
 
-    private void startServer() {
+    public void startServer() {
         server.startServer();
         setTitle("Server is online");
     }
