@@ -98,14 +98,14 @@ public class ClientGUI extends JFrame implements ClientView {
         clientController.sendMessageToServer(message);
     }
 
-    private void disconnectFromServer() {
+    public void disconnectFromServer() {
         if (clientController.isOnlineCheck()) {
             clientController.disconnectFromServer();
             chat.setText(clientController.getUserName() + " has disconnected from server");
         }
     }
 
-    private void connectToServer() {
+    public void connectToServer() {
         if (clientController.serverCheck()) {
             if (!checkConnection()) {
                 clientController.connectToServer();

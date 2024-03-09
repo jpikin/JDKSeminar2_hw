@@ -2,6 +2,9 @@ package program;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 
 public class ServerGUI extends JFrame implements ServerView, LogsView{
@@ -33,6 +36,7 @@ public class ServerGUI extends JFrame implements ServerView, LogsView{
         setTitle("Server is offline");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBounds(POS_X, POS_Y, WIDTH, HEIGHT);
+        addWindowListener(listener);
 
     }
     private void createPanel() {
@@ -56,7 +60,7 @@ public class ServerGUI extends JFrame implements ServerView, LogsView{
     }
 
     public void saveLogs(String message) {
-        logs.saveLogs(message ); // delete + '\n'
+        logs.saveLogs(message );
     }
     public String readLogs(){
         return logs.readLogs();
@@ -71,4 +75,11 @@ public class ServerGUI extends JFrame implements ServerView, LogsView{
         server.startServer();
         setTitle("Server is online");
     }
+    WindowListener listener = new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent we) {
+            saveLogs(chat.getText());
+
+        }
+    };
 }
